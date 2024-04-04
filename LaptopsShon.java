@@ -35,10 +35,10 @@ class Laptop {
 public class LaptopsShon {
     public static void main(String[] args) {
         Set<Laptop> laptops = new HashSet<>();
-        laptops.add(new Laptop(15, "Dell", 16, "SSD", 512, "Windows 11"));
+        laptops.add(new Laptop(15, "HP", 16, "SSD", 512, "Windows 11"));
         laptops.add(new Laptop(12, "Apple", 8, "SSD", 256, "MacOS 14 Sonoma"));
-        laptops.add(new Laptop(17, "Lenovo", 32, "HDD", 512, "Не установлена"));
-        laptops.add(new Laptop(15, "Asus", 16, "HDD", 512, "CentOs 7"));
+        laptops.add(new Laptop(17, "Aser", 32, "HDD", 512, "Не установлена"));
+        laptops.add(new Laptop(15, "Asus", 16, "HDD", 1024, "CentOs 7"));
 
         Map<String, Object> filters = new HashMap<>();
 
@@ -62,31 +62,37 @@ public class LaptopsShon {
             switch (choice) {
                 
                 case 1:
-                    System.out.println("Введиет желаемую диагональ:");
+                    System.out.print("Введиет желаемую диагональ(12 -- 17):");
                     filters.put("size", scanner.nextInt());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 case 2:
-                    System.out.println("Ввидите наименование желаемого производителя:");
+                    System.out.print("Ввидите наименование желаемого производителя(HP, Apple, Aser, Asus):");
                     filters.put("vendor", scanner.next());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 case 3:
-                    System.out.println("Ввидите минимальный достаточный объем оперативной памяти:");
+                    System.out.print("Ввидите минимальный достаточный объем оперативной памяти(8 -- 32):");
                     filters.put("ramOnBoard", scanner.nextInt());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 case 4:
-                    System.out.println("Введите желаемый тип накопителя:");
+                    System.out.print("Введите желаемый тип накопителя(HDD, SSD): ");
                     filters.put("driveType", scanner.next());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 case 5:
-                    System.out.println("Введите минимальный объем накопителя:");
+                    System.out.print("Введите минимальный объем накопителя(256 -- 1024): ");
                     filters.put("driveSize", scanner.nextInt());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 case 6:
-                    System.out.println("Введите назваение желаемоы операционной системы:");
+                    System.out.print("Введите назваение желаемоы операционной системы(Windows 11, MacOS 14 Sonoma, CentOs 7, Не установлена): ");
                     filters.put("installedOS", scanner.next());
+                    System.out.println("Выберите следующий параметр для фильтрации или нажмите «0» для вывода результата.");
                     break;
                 default:
-                    System.out.println("Неверный выбор. Попробуйте снова.");
+                    System.out.println("Что-то пошло не так. Попробуйте ещё разок. ");
             }
         }
 
@@ -100,8 +106,9 @@ public class LaptopsShon {
                 .collect(Collectors.toSet());
 
         System.out.println("Отфильтрованные ноутбуки:");
+        int count = 0;
         for (Laptop laptop : filteredLaptops) {
-            System.out.println(laptop);
+            System.out.println(++count + ". "+ laptop.vendor + " диагональ:" + laptop.size + " RAM:" + laptop.ramOnBoard + "Gb " + laptop.driveType + " (" + laptop.driveSize + ") " + " ОС: " + laptop.installedOS );
         }
     }
 }
